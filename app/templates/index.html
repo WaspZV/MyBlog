@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>{{ title }} - Microblog</title>
-    </head>
-    <body>
-        <h1>Hello, {{ user }}!</h1>
-    </body>
+  <head>
+    {% if title %}
+      <title>{{ title }} - Microblog</title>
+    {% else %}
+      <title>Welcome to Microblog</title>
+    {% endif %}
+  </head>
+  <body>
+    <h1>Hi, {{ user.username }}!</h1>
+    {% for post in posts %}
+      <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+  </body>
 </html>
