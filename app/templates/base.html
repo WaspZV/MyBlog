@@ -18,6 +18,7 @@
                 {% if current_user.is_anonymous %}
                     <a href="{{ url_for('login') }}" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200">Login</a>
                 {% else %}
+                    <a href="{{ url_for('user', username=current_user.username) }}" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200">Profile</a>
                     <a href="{{ url_for('logout') }}" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200">Logout</a>
                 {% endif %}
                 <!-- Переключатель тем -->
