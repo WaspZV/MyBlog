@@ -1,31 +1,45 @@
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% if title %}
       <title>{{ title }} - microblog</title>
     {% else %}
       <title>microblog</title>
     {% endif %}
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <div>
-  Microblog:
-  <a href="{{ url_for('index') }}">Home</a>
-  {% if current_user.is_anonymous %}
-  <a href="{{ url_for('login') }}">Login</a>
-  {% else %}
-  <a href="{{ url_for('logout') }}">Logout</a>
-  {% endif %}
-</div>
-  <hr>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  {% block content %}{% endblock %}
+  <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <nav class="bg-sky-400 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+         <a href="{{ url_for('index') }}" class="text-lg
+         font-bold">Microblog</a>
+         <div class="flex space-x-4">
+                {% if current_user.is_anonymous %}
+                    <a href="{{ url_for('login') }}" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200">Login</a>
+                {% else %}
+                    <a href="{{ url_for('logout') }}" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200">Logout</a>
+                {% endif %}
+                <!-- Переключатель тем -->
+                <button id="theme-toggle" class="px-4 py-2 bg-white text-blue-600 rounded hover:bg-blue-200" onclick="toggleTheme()">
+                    Toggle Theme
+                </button>
+         </div>
+      </div>
+  </nav>
+
+  <div class="container mx-auto p-4">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+    <div class="bg-sky-100 dark:bg-sky-600 text-white
+         dark:text-white p-3 rounded nb-4">
+          {% for message in messages %}
+            <p class="mb-1">{{ message }}</p>
+          {% endfor %}
+    </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
   </body>
 </html>
