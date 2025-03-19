@@ -4,7 +4,7 @@ import sqlalchemy as sa
 import sqlalchemy.orm as so
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from hashlib import md5
+from hashlib import sha256
 
 from app import db
 from app import login
@@ -31,8 +31,8 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     def avatar(self, size):
-        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
-        return f'https://www.gravatar.com/avatar/{digest}?d=identification&s{size}'
+        digest = sha256(self.email.lower().encode('utf-8')).hexdigest()
+        return f'https://gravatar.com/avatar/{digest}?s={size}'
 
 
     #DUNDER METHOD
