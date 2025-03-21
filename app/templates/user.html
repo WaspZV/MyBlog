@@ -1,14 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
-        <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
-            <td><h1>User: {{ user.username }}</h1></td>
-        </tr>
-    </table>
-    <hr>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
+    <div class="flex justify-left mt-10">
+        <div class="w-full max-w-12xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <div class="flex items-left mb-12">
+                <div class="mr-6">
+                    <img src="{{ user.avatar(128) }}" alt="User Avatar" class="w-32 h-32 rounded-full border-2 border-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-100">User: {{ user.username }}</h1>
+                    {% if user.about_me %}
+                        <p class="mt-2 text-gray-700 dark:text-gray-300">{{ user.about_me }}</p>
+                    {% endif %}
+                    {% if last_seen %}
+                        <p class="mt-2 text-gray-500 dark:text-gray-400">Last seen on: {{ last_seen }}</p>
+                    {% endif %}
+                    {% if user == current_user %}
+                    <a href="{{ url_for('edit_profile') }}" class="mt-4 inline-block text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-600">
+                        Edit Profile
+                    </a>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <hr class="my-6">
+
+            <div class="space-y-4">
+                {% for post in posts %}
+                    {% include '_post.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="text-center p-6 max-w-lg">
+            <img src="/static/images/error-500.svg" alt="Error 500" class="w-64 mx-auto">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-4">An unexpected error has occurred</h1>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mt-2">The administrator has been notified. Sorry for the inconvenience!</p>
+            <a href="{{ url_for('index') }}"
+               class="mt-6 inline-block px-6 py-2 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-700">
+                Back to Home
+            </a>
+        </div>
+    </div>
+{% endblock %}

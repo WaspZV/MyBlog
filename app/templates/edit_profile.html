@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="flex justify-center mt-10">
+        <div class="w-full max-w-md bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <h1 class="text-2xl font-semibold mb-6 text-center text-gray-900 dark:text-gray-100">Edit Profile</h1>
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+
+                <div class="mb-4">
+                    {{ form.username.label(class="block text-sm font-medium text-gray-700 dark:text-gray-300") }}
+                    {{ form.username(class="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                    {% for error in form.username.errors %}
+                        <p class="text-sm text-red-500">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-4">
+                    {{ form.about_me.label(class="block text-sm font-medium text-gray-700 dark:text-gray-300") }}
+                    {{ form.about_me(class="mt-1 block w-full p-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                    {% for error in form.about_me.errors %}
+                        <p class="text-sm text-red-500">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="mb-6">
+                    <button type="submit" class="w-full bg-sky-600 text-white p-2 rounded-md hover:bg-sky-700 dark:bg-sky-800 dark:hover:bg-sky-700">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
